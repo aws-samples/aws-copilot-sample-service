@@ -1,11 +1,38 @@
-## My Project
+## AWS Copilot CLI Sample App
 
-TODO: Fill this README out!
+This is a sample AWS Copilot sample app. You can use AWS Copilot to deploy this simple website to Amazon ECS. 
 
-Be sure to:
+## Deploying 
 
-* Change the title in this README
-* Edit your repository description on GitHub
+To deploy this app, clone this repo and then run:
+
+```
+copilot init --app demo                  \
+  --svc api                              \
+  --svc-type 'Load Balanced Web Service' \
+  --dockerfile './Dockerfile'            \ 
+  --deploy
+```
+
+Copilot will set up:
+* A VPC
+* Subnets/Security Groups
+* Application Load Balancer
+* Amazon ECR Repositories
+* ECS Cluster & Service running on AWS Fargate
+
+
+## Cleaning up
+
+Since this demo set up resources in your account, let's delete them. 
+
+```
+copilot app delete --env-profiles test=default
+```
+
+## Learning More
+
+If you want to learn more about AWS Copilot, checkout our [documentation](https://aws.github.io/copilot-cli/).
 
 ## Security
 
