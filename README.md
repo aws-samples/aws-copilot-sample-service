@@ -14,17 +14,16 @@ copilot init --app demo                  \
   --deploy
 ```
 
-Copilot will set up:
+Copilot will set up the following resources in your account:
 * A VPC
 * Subnets/Security Groups
 * Application Load Balancer
 * Amazon ECR Repositories
 * ECS Cluster & Service running on AWS Fargate
 
-
 ## Cleaning up
 
-Since this demo set up resources in your account, let's delete them. 
+Since this demo sets up resources in your account, let's delete them so you don't get charged: 
 
 ```
 copilot app delete --env-profiles test=default
@@ -32,7 +31,7 @@ copilot app delete --env-profiles test=default
 
 ## Learning More
 
-If you want to learn more about AWS Copilot, checkout our [documentation](https://aws.github.io/copilot-cli/).
+If you want to learn more about AWS Copilot, check out our [documentation](https://aws.github.io/copilot-cli/).
 
 ## Security
 
