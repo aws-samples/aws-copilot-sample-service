@@ -7,10 +7,10 @@ This is a sample AWS Copilot sample app. You can use AWS Copilot to deploy this 
 To deploy this app, clone this repo and then run:
 
 ```
-copilot init --app demo                  \
-  --svc api                              \
-  --svc-type 'Load Balanced Web Service' \
-  --dockerfile './Dockerfile'            \ 
+copilot init --app demo \
+  --name api \
+  --type "Load Balanced Web Service" \
+  --dockerfile "./Dockerfile" \
   --deploy
 ```
 
