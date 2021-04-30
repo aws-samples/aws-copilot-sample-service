@@ -26,7 +26,7 @@ Copilot will set up the following resources in your account:
 Since this demo sets up resources in your account, let's delete them so you don't get charged: 
 
 ```
-copilot app delete --env-profiles test=default
+copilot app delete
 ```
 
 ## Learning More
