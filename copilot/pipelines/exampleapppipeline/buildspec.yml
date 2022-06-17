@@ -24,6 +24,7 @@ phases:
     commands:
       - ls -l
       - export COLOR="false"
+      - echo $DOCKER_USERNAM
       - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWD
       # First, upgrade the cloudformation stack of every environment in the pipeline.
       - pipeline=$(cat $CODEBUILD_SRC_DIR/copilot/pipelines/exampleapppipeline/manifest.yml | ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(ARGF))')
