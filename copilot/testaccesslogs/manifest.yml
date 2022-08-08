@@ -1,26 +1,23 @@
-# The manifest for the "loadbalancedwebservice2" service.
+# The manifest for the "testaccesslogs" service.
 # Read the full specification for the "Load Balanced Web Service" type at:
 #  https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/
 
 # Your service name will be used in naming your resources like log groups, ECS services, etc.
-name: loadbalancedwebservice2
+name: testaccesslogs
 type: Load Balanced Web Service
 
 # Distribute traffic to your service.
 http:
   # Requests to this path will be forwarded to your service.
   # To match all requests you can use the "/" path.
-  path: 'loadbalancedwebservice2'
-  alias: paragspersonaldomain.com
-  hosted_zone: Z01686842NNCSRBUFL6LN
-
+  path: 'testaccesslogs'
   # You can specify a custom health check path. The default is "/".
   # healthcheck: '/'
 
 # Configuration for your containers and service.
 image:
   # Docker build arguments. For additional overrides: https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/#image-build
-  build: copilot/backendservice/Dockerfile
+  build: Dockerfile
   # Port exposed through your container to route traffic to it.
   port: 80
 
@@ -41,5 +38,5 @@ exec: true     # Enable running commands in your container.
 #environments:
 #  test:
 #    count: 2               # Number of tasks to run for the "test" environment.
-#    deployment:
-#       rolling: 'recreate'
+#    deployment:            # The deployment strategy for the "test" environment.
+#       rolling: 'recreate' # Stops existing tasks before new ones are started for faster deployments.

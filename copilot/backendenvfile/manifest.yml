@@ -1,26 +1,17 @@
-# The manifest for the "loadbalancedwebservice2" service.
-# Read the full specification for the "Load Balanced Web Service" type at:
-#  https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/
+# The manifest for the "backendenvfile" service.
+# Read the full specification for the "Backend Service" type at:
+#  https://aws.github.io/copilot-cli/docs/manifest/backend-service/
 
 # Your service name will be used in naming your resources like log groups, ECS services, etc.
-name: loadbalancedwebservice2
-type: Load Balanced Web Service
+name: backendenvfile
+type: Backend Service
 
-# Distribute traffic to your service.
-http:
-  # Requests to this path will be forwarded to your service.
-  # To match all requests you can use the "/" path.
-  path: 'loadbalancedwebservice2'
-  alias: paragspersonaldomain.com
-  hosted_zone: Z01686842NNCSRBUFL6LN
-
-  # You can specify a custom health check path. The default is "/".
-  # healthcheck: '/'
+# Your service is reachable at "http://backendenvfile.${COPILOT_SERVICE_DISCOVERY_ENDPOINT}:80" but is not public.
 
 # Configuration for your containers and service.
 image:
-  # Docker build arguments. For additional overrides: https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/#image-build
-  build: copilot/backendservice/Dockerfile
+  # Docker build arguments. For additional overrides: https://aws.github.io/copilot-cli/docs/manifest/backend-service/#image-build
+  build: Dockerfile
   # Port exposed through your container to route traffic to it.
   port: 80
 
@@ -38,8 +29,9 @@ exec: true     # Enable running commands in your container.
 #  GITHUB_TOKEN: GITHUB_TOKEN  # The key is the name of the environment variable, the value is the name of the SSM parameter.
 
 # You can override any of the values defined above by environment.
-#environments:
-#  test:
+environments:
+  test:
+    env_file:'prod.env'
 #    count: 2               # Number of tasks to run for the "test" environment.
-#    deployment:
-#       rolling: 'recreate'
+#    deployment:            # The deployment strategy for the "test" environment.
+#       rolling: 'recreate' # Stops existing tasks before new ones are started for faster deployments.

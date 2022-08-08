@@ -1,0 +1,21 @@
+# The manifest for the "importcerarns" environment.
+# Read the full specification for the "Environment" type at:
+#  https://aws.github.io/copilot-cli/docs/manifest/environment/
+
+# Your environment name will be used in naming your resources like VPC, cluster, etc.
+name: importcerarns
+type: Environment
+
+# Import your own VPC and subnets or configure how they should be created.
+# network:
+#   vpc:
+#     id:
+
+# Configure the load balancers in your environment, once created.
+http:
+  public:
+    certificates: [arn:aws:acm:us-east-1:910995322324:certificate/a3afa4e6-affa-4f35-b426-23f95f320d75]
+
+# Configure observability for your environment resources.
+observability:
+  container_insights: false

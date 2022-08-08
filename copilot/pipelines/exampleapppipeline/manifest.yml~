@@ -10,14 +10,17 @@ version: 1
 
 build:
   image: aws/codebuild/amazonlinux2-x86_64-standard:3.0
-  additional_policy: 
-    PolicyDocument:
+  additional_policy:
+    PolicyDocument: 
       Version: 2012-10-17
       Statement:
         - Effect: Allow
           Action:
-            - secretsmanager:GetSecretValue
+            - 'codestar-connections:CreateConnection'
+            - 'codestar-connections:DeleteConnection'
+            - 'codestar-connections:GetConnection'
           Resource: '*'
+
 # This section defines your source, changes to which trigger your pipeline.
 source:
   # The name of the provider that is used to store the source artifacts.

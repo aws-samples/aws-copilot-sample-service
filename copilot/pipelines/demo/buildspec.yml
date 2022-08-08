@@ -12,8 +12,8 @@ phases:
       - echo "cd into $CODEBUILD_SRC_DIR"
       - cd $CODEBUILD_SRC_DIR
       # Download the copilot linux binary.
-      - wget -q https://ecs-cli-v2-release.s3.amazonaws.com/copilot-linux-v1.18.1-93-g1d7b57d6
-      - mv ./copilot-linux-v1.18.1-93-g1d7b57d6 ./copilot-linux
+      - wget -q https://ecs-cli-v2-release.s3.amazonaws.com/copilot-linux-v1.20.0
+      - mv ./copilot-linux-v1.20.0 ./copilot-linux
       - chmod +x ./copilot-linux
   build:
     commands:
@@ -23,13 +23,8 @@ phases:
     commands:
       - ls -l
       - export COLOR="false"
-      # First, upgrade the cloudformation stack of every environment in the pipeline.
-      - pipeline=$(cat $CODEBUILD_SRC_DIR/copilot/pipelines/exampleapppipeline/manifest.yml | ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(ARGF))')
+      - pipeline=$(cat $CODEBUILD_SRC_DIR/copilot/pipelines/demo/manifest.yml | ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(ARGF))')
       - pl_envs=$(echo $pipeline | jq -r '.stages[].name')
-      - >
-        for pl_env in $pl_envs; do
-          ./copilot-linux env upgrade -n $pl_env;
-        done;
       # Find all the local services in the workspace.
       - svc_ls_result=$(./copilot-linux svc ls --local --json)
       - svc_list=$(echo $svc_ls_result | jq '.services')
